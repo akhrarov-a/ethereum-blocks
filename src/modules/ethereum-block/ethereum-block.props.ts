@@ -1,3 +1,4 @@
+import { useMeta } from '@core';
 import { useParams } from 'react-router';
 
 /**
@@ -5,6 +6,13 @@ import { useParams } from 'react-router';
  */
 const useEthereumBlock = () => {
   const params = useParams();
+
+  useMeta(
+    {
+      title: `Ethereum Block#${params.id} | Etherscan`
+    },
+    [params]
+  );
 
   return { params };
 };
