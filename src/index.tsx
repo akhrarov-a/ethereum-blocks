@@ -1,11 +1,15 @@
+import './styles/global.scss';
+import { App } from '@app';
+import { Provider } from './provider';
+import { store } from '@store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-      <div>App</div>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 

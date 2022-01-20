@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@core": ["./src/core/index"],
+      "@core/*": ["./src/core/*"],
+      "@store": ["./src/store/index"],
+      "@store/*": ["./src/store/*"],
+      "@app": ["./src/modules/app/index"],
+      "@app/*": ["./src/modules/app/*"],
+      "@ethereum-block": ["./src/modules/ethereum-block/index"],
+      "@ethereum-block/*": ["./src/modules/ethereum-block/*"]
+    }
+  }
+}
