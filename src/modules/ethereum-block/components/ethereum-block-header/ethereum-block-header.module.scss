@@ -1,0 +1,51 @@
+@import 'src/styles/core';
+
+.container {
+  width: 100vw;
+  padding: 15px 0;
+  background-color: $white;
+}
+
+.content {
+  @include flex(space-between, center);
+
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 180px;
+}
+
+.info {
+  @include flex(flex-start, center);
+
+  width: fit-content;
+  gap: 20px;
+}
+
+.info-title {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.info-dropdown {
+  width: 200px;
+  font-size: 1.4rem;
+}
+
+.arrow {
+  @include size(24px);
+
+  cursor: pointer;
+  color: $black;
+  transition: color 0.2s;
+
+  &:hover {
+    color: lighten($black, 40%);
+  }
+}
+
+.arrow-left {
+  transform: rotateY(180deg);
+}

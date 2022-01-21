@@ -14,7 +14,7 @@ const useEthereumBlock = () => {
     [params]
   );
 
-  return { params };
+  return {};
 };
 
 export { useEthereumBlock };
