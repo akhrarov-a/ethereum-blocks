@@ -17,6 +17,11 @@
   width: 180px;
 }
 
+.latest {
+  padding: 6px 18px;
+  font-size: 1.4rem;
+}
+
 .info {
   @include flex(flex-start, center);
 
@@ -32,6 +37,48 @@
 .info-dropdown {
   width: 200px;
   font-size: 1.4rem;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    .tooltip-text {
+      opacity: 1;
+    }
+  }
+}
+
+.tooltip-text {
+  opacity: 0;
+  transition: opacity 0.4s;
+  position: absolute;
+  z-index: 1;
+  top: 110%;
+  left: -200%;
+  white-space: nowrap;
+  background-color: black;
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 6px;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+}
+
+.lefter {
+  left: -230%;
 }
 
 .arrow {

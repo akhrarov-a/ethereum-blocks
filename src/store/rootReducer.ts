@@ -1,10 +1,10 @@
-import { general } from './general';
+import { ethereumBlockReducer } from '@ethereum-block/store';
 
 /**
  * Root Reducer
  */
 const rootReducer = {
-  general
+  ethereumBlock: ethereumBlockReducer
 };
 
 export { rootReducer };

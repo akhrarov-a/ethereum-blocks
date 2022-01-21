@@ -35,4 +35,5 @@ const createStore = () => {
  */
 const store = createStore();
 
+export * from './state';
 export { store };

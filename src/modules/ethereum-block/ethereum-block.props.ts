@@ -1,10 +1,14 @@
-import { useMeta } from '@core';
+import { blockNumberDecToHex, useMeta } from '@core';
+import { getEthereumBlock } from '@ethereum-block/store';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 /**
  * Use Ethereum Block
  */
 const useEthereumBlock = () => {
+  const dispatch = useDispatch();
   const params = useParams();
 
   useMeta(
@@ -13,6 +17,16 @@ const useEthereumBlock = () => {
     },
     [params]
   );
+
+  useEffect(() => {
+    if (!params.id) return;
+
+    const number = isNaN(+params.id)
+      ? params.id
+      : blockNumberDecToHex(params.id);
+
+    dispatch(getEthereumBlock(number));
+  }, [params]);
 
   return {};
 };
