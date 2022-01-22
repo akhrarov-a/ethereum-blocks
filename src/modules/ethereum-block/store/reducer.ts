@@ -13,6 +13,9 @@ const ethereumBlockReducer = reducer(new EthereumBlockState())
   .on(setLoading, (state, payload) => {
     state.loading = payload;
   })
+  .on(getEthereumBlock, (state) => {
+    state.selectedBlock = null;
+  })
   .on(getEthereumBlock.success, (state, payload) => {
     state.selectedBlock = payload;
   })
