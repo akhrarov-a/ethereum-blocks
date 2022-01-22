@@ -1,6 +1,6 @@
 import { State } from '@store';
 import { blockNumberHexToDec } from '@core';
-import { useMemo } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 
@@ -10,7 +10,12 @@ import { useSelector } from 'react-redux';
 const useEthereumBlockHeader = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const { selectedBlock } = useSelector((state: State) => state.ethereumBlock);
+
+  const { loading, selectedBlock, latestBlockNumber } = useSelector(
+    (state: State) => state.ethereumBlock
+  );
+
+  const [isLatestBlock, setIsLatestBlock] = useState<boolean>();
 
   const selectedBlockNumber = useMemo(
     () =>
@@ -21,10 +26,14 @@ const useEthereumBlockHeader = () => {
   );
 
   const onArrowLeftClick = () => {
+    if (loading || +(selectedBlock?.number as string) === 0) return;
+
     navigate(`/block/${+(selectedBlockNumber as string) - 1}`);
   };
 
   const onArrowRightClick = () => {
+    if (loading || isLatestBlock) return;
+
     navigate(`/block/${+(selectedBlockNumber as string) + 1}`);
   };
 
@@ -32,7 +41,18 @@ const useEthereumBlockHeader = () => {
     navigate('/block/latest');
   };
 
+  useLayoutEffect(() => {
+    if (!params.id || !selectedBlock) return;
+
+    setIsLatestBlock(
+      params.id === 'latest' || selectedBlock?.number === latestBlockNumber
+    );
+  }, [params, latestBlockNumber, selectedBlock]);
+
   return {
+    loading,
+    isFirstBlock: +(selectedBlock?.number as string) === 0,
+    isLatestBlock,
     selectedBlockNumber,
     onArrowLeftClick,
     onArrowRightClick,

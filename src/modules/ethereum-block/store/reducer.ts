@@ -1,20 +1,23 @@
 import { EthereumBlockState } from './state';
-import { getEthereumBlock } from './actions';
+import {
+  getEthereumBlock,
+  setLatestEthereumBlockNumber,
+  setLoading
+} from './actions';
 import { reducer } from 'redux-chill';
 
 /**
  * Ethereum Block Reducer
  */
 const ethereumBlockReducer = reducer(new EthereumBlockState())
-  .on(getEthereumBlock, (state) => {
-    state.loading = true;
+  .on(setLoading, (state, payload) => {
+    state.loading = payload;
   })
   .on(getEthereumBlock.success, (state, payload) => {
-    state.loading = false;
     state.selectedBlock = payload;
   })
-  .on(getEthereumBlock, (state) => {
-    state.loading = false;
+  .on(setLatestEthereumBlockNumber, (state, payload) => {
+    state.latestBlockNumber = payload;
   });
 
 export { ethereumBlockReducer };

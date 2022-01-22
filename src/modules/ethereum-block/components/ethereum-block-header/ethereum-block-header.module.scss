@@ -81,6 +81,10 @@
   left: -230%;
 }
 
+.is-latest-block {
+  left: -400%;
+}
+
 .arrow {
   @include size(24px);
 
@@ -91,6 +95,10 @@
   &:hover {
     color: lighten($black, 40%);
   }
+}
+
+.arrow-disabled {
+  color: lighten($black, 40%);
 }
 
 .arrow-left {

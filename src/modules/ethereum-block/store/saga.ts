@@ -2,7 +2,11 @@ import { Payload, Saga } from 'redux-chill';
 import { ResponseGenerator, Transaction } from '@api';
 import { StoreContext } from '@store/context';
 import { call, put } from 'redux-saga/effects';
-import { getEthereumBlock } from './actions';
+import {
+  getEthereumBlock,
+  setLatestEthereumBlockNumber,
+  setLoading
+} from './actions';
 
 /**
  * Ethereum Block Saga
@@ -17,6 +21,8 @@ class EthereumBlockSaga {
     { ethereumBlock }: StoreContext
   ) {
     try {
+      yield put(setLoading(true));
+
       const { data }: ResponseGenerator = yield call(
         ethereumBlock.getEthereumBlock,
         {
@@ -32,8 +38,21 @@ class EthereumBlockSaga {
           )
         })
       );
+
+      if (blockNumber === 'latest') return;
+
+      const {
+        data: { result }
+      }: ResponseGenerator = yield call(ethereumBlock.getEthereumBlock, {
+        number: 'latest'
+      });
+
+      yield put(setLatestEthereumBlockNumber(result.number));
     } catch (error) {
       console.log(error);
+      yield put(getEthereumBlock.fail());
+    } finally {
+      yield put(setLoading(false));
     }
   }
 }

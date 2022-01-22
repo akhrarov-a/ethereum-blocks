@@ -13,6 +13,9 @@ import styles from './ethereum-block-header.module.scss';
 const EthereumBlockHeader = hoc(
   useEthereumBlockHeader,
   ({
+    loading,
+    isFirstBlock,
+    isLatestBlock,
     selectedBlockNumber,
     onArrowLeftClick,
     onArrowRightClick,
@@ -27,7 +30,9 @@ const EthereumBlockHeader = hoc(
           </h3>
           <div className={styles.button}>
             <IoIosArrowBack
-              className={styles.arrow}
+              className={classNames(styles.arrow, {
+                [styles['arrow-disabled']]: isFirstBlock || loading
+              })}
               onClick={onArrowLeftClick}
             />
             <span className={classNames(styles['tooltip-text'], styles.lefter)}>
@@ -37,12 +42,23 @@ const EthereumBlockHeader = hoc(
           <h3 className={styles['info-title']}>{selectedBlockNumber}</h3>
           <div className={styles.button}>
             <IoIosArrowForward
-              className={styles.arrow}
+              className={classNames(styles.arrow, {
+                [styles['arrow-disabled']]: isLatestBlock || loading
+              })}
               onClick={onArrowRightClick}
             />
-            <span className={styles['tooltip-text']}>View Next Block</span>
+            <span
+              className={classNames(styles['tooltip-text'], {
+                [styles['is-latest-block']]: isLatestBlock
+              })}
+            >
+              {isLatestBlock
+                ? 'You have reached the latest block'
+                : 'View Next Block'}
+            </span>
           </div>
           <Button
+            disabled={isLatestBlock}
             className={styles.latest}
             variant='outline-dark'
             onClick={onLatestClick}
