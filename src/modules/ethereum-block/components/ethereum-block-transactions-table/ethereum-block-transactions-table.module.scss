@@ -1,0 +1,33 @@
+@import 'src/styles/core';
+
+.container {
+  width: 100vw;
+  padding: 15px 0;
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-top: 20px;
+}
+
+.table {
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.spinner-container {
+  @include flex(center, center);
+
+  position: absolute;
+  top: 8vh;
+  width: 100vw;
+  height: 92vh;
+}
+
+.spinner {
+  @include size(4rem !important);
+}
