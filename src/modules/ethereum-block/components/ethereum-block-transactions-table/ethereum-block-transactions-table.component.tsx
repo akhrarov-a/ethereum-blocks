@@ -20,6 +20,7 @@ const EthereumBlockTransactionsTable = hoc(
       ) : (
         !!selectedBlock && (
           <div className={styles.content}>
+            <h2 className={styles.title}>Block Hash - {selectedBlock?.hash}</h2>
             <h2 className={styles.title}>
               Block #{blockNumberHexToDec(selectedBlock?.number as string)}{' '}
               transactions

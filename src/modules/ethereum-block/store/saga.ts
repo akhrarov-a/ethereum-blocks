@@ -33,6 +33,7 @@ class EthereumBlockSaga {
       yield put(
         getEthereumBlock.success({
           number: data.result.number,
+          hash: data.result.hash,
           transactions: data.result.transactions.map(
             ({ blockHash, from, to }: Transaction) => ({ blockHash, from, to })
           )

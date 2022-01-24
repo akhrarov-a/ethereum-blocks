@@ -12,6 +12,7 @@ type Transaction = {
  */
 type EthereumBlock = {
   number: string;
+  hash: string;
   transactions: Transaction[];
 };
 
