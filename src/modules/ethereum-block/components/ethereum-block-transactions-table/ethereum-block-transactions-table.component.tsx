@@ -36,7 +36,7 @@ const EthereumBlockTransactionsTable = hoc(
               </thead>
               <tbody>
                 {selectedBlock?.transactions.map((transaction, index) => (
-                  <tr key={transaction.blockHash}>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{transaction.from}</td>
                     <td>{transaction.to}</td>

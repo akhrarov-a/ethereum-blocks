@@ -49,8 +49,10 @@ class EthereumBlockSaga {
       });
 
       yield put(setLatestEthereumBlockNumber(result.number));
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      alert(`Oopsie, there is error in request! '${error.message}'`);
+
       yield put(getEthereumBlock.fail());
     } finally {
       yield put(setLoading(false));
