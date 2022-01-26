@@ -17,7 +17,6 @@ class EthereumBlockService {
    * Api
    */
   public api = this.create({
-    withCredentials: true,
     baseURL: 'https://cloudflare-eth.com',
     headers: {
       'Content-Type': 'application/json'
