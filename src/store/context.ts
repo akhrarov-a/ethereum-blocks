@@ -10,9 +10,6 @@ const getContext = () => {
 
     return async ({ headers = {}, ...config }: AxiosRequestConfig) => {
       try {
-        headers.channel = 'admin';
-        headers['Cache-Control'] = 'no-cache';
-
         return await instance({
           ...config,
           headers
